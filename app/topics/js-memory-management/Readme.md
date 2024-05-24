@@ -79,3 +79,27 @@ main();
 ```
 JS compares using the memory reference and even though the contents are the same they do not have the same reference as seen:
 ![heap reference with array](/assets/stack-and-heap-5.png)
+
+
+Javascript Examples:
+```
+Object.is(false, false); //true
+Object.is(true, false); //false
+Object.is(10, 20); //false
+Object.is(20, 20); //true
+
+Object.is([], []); //false - because different memory locations
+Object.is([10], [10]); //false - because different memory locations
+
+const a = [10];
+const b = [10];
+Object.is(a, b); //false - because referencing different memory
+
+const a = [10];
+const b = b;
+Object.is(a, b); //true - because referencing the same memory
+
+const a = [10];
+const b = [10];
+Object.isEqual(a[0], b[0]); //true because they are both referencing the same value (10)
+```
