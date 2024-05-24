@@ -47,6 +47,7 @@ main();
 ```
 
 This would then in turn reference the array from Heap (location in memory)
+
 ![heap reference](/assets/stack-and-heap-3.png)
 
 Example with Object and Functions using cloning the same array:
