@@ -103,3 +103,38 @@ const a = [10];
 const b = [10];
 Object.isEqual(a[0], b[0]); //true because they are both referencing the same value (10)
 ```
+
+Examples with React:
+```
+function Counter() {
+    const [counter, setCounter] = useState({count: 0});
+
+    const onIncrement = () =>{
+        //This will not work
+        data.count += 1;
+        setData(data); // in the background this will do Object.is(oldValue, newValue); -> true! ?? because it uses the same reference
+    }
+
+    useEffect(()=>{
+        console.log(`${data.count}`);
+        },
+    [])
+}
+```
+
+instead:
+```
+function Counter() {
+    const [counter, setCounter] = useState({count: 0});
+
+    const onIncrement = () =>{
+        //Works!
+        setData({ count: data.count + 1}); // in the background this will do Object.is(oldValue, newValue); -> false - because it now creates a new Object in the heap instead of referring to the same object as before
+    }
+
+    useEffect(()=>{
+        console.log(`${data.count}`);
+        },
+    [])
+}
+```
