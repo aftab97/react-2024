@@ -102,6 +102,19 @@ Object.is(a, b); //true - because referencing the same memory
 const a = [10];
 const b = [10];
 Object.isEqual(a[0], b[0]); //true because they are both referencing the same value (10)
+
+const a = ["c","b","a"];
+const b = a.sort();
+console.log(b); //["a","b","c"]
+console.log(a); //["a","b","c"] -> the same because it references the same array in memory
+
+instead do .toSorted()
+OR
+[...a].sort();
+
+
+//Dont do this:
+JSON.stringify(data); //uses a ton of memory
 ```
 
 Examples with React:
@@ -111,8 +124,8 @@ function Counter() {
 
     const onIncrement = () =>{
         //This will not work
-        data.count += 1;
-        setData(data); // in the background this will do Object.is(oldValue, newValue); -> true! ?? because it uses the same reference
+        data.count += 1; //This will look for data reference in memory and add 1 to it
+        setData(data); // in the background this will do Object.is(oldValue, newValue); -> true! ?? because it uses the same reference (data)
     }
 
     useEffect(()=>{
@@ -122,13 +135,14 @@ function Counter() {
 }
 ```
 
+
 instead:
 ```
 function Counter() {
     const [counter, setCounter] = useState({count: 0});
 
     const onIncrement = () =>{
-        //Works!
+        //Works! will rerender!
         setData({ count: data.count + 1}); // in the background this will do Object.is(oldValue, newValue); -> false - because it now creates a new Object in the heap instead of referring to the same object as before
     }
 
@@ -138,3 +152,4 @@ function Counter() {
     [])
 }
 ```
+
