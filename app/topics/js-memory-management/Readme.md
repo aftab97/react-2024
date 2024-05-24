@@ -1,0 +1,80 @@
+# JS/ React Memory Management #
+
+## How Javascript manages its memory ##
+Stack and Heap both build towards the center but if one of them start getting big you get stack overflow.
+
+
+```
+function main(){
+//numWal is stored in a stack frame because they are local to the function
+    const numVal = 1;
+}
+main();
+```
+
+Here is another example:
+```
+function anotherFunction(value){
+    let v = value;
+    console.log(v);
+}
+
+function main(){
+    const numVal = 1;
+    const aFlag = true;
+    anotherFunction = 1;
+}
+```
+```These are primative values being stored in the stack frame```
+When running through main()         |  After
+:----------------------------------:|:----------------------------------:
+![](/assets/stack-and-heap-1.png)   |  ![](/assets/stack-and-heap-2.png)
+
+But if each recursion creates a new stack frame this can lead to ```StackOverflow```
+
+
+## Working with Non Primative values ##
+This is often not stored in the stack fram because they change size and you can push and pop e.g an Array
+
+Example code with an Array:
+```
+function main(){
+    const numVal = 1;
+    const numbers = [10,20,30];
+}
+
+main();
+```
+
+This would then in turn reference the array from Heap (location in memory)
+![heap reference](/assets/stack-and-heap-3.png)
+
+Example with Object and Functions using cloning the same array:
+```
+function anotherFunction(vals){
+    console.log(vals)
+}
+
+function main(){
+    const values = {x:[10,20], y:[30,40]}
+    anotherFunction(values);
+}
+
+main();
+```
+
+Notice how when ```anotherFunction(value) -> gets used as vals ``` it references the same array instead of making a copy
+![heap reference with array](/assets/stack-and-heap-4.png)
+
+So when you do something like this:
+```
+function main(){
+    const numbers1 = [10,20,30];
+    const numbers2 = [10,20,30];
+    console.log(numbers1 === numbers2); // False ??? because they both allocated to different Heap stacks which are being referenced
+}
+
+main();
+```
+JS compares using the memory reference and even though the contents are the same they do not have the same reference as seen:
+![heap reference with array](/assets/stack-and-heap-5.png)
