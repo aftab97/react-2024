@@ -26,7 +26,7 @@ function main(){
 }
 ```
 ```These are primative values being stored in the stack frame```
-When running through main()         |  After
+When running through main()         |  After (Garbage Collector pops stack)
 :----------------------------------:|:----------------------------------:
 ![](/assets/stack-and-heap-1.png)   |  ![](/assets/stack-and-heap-2.png)
 
