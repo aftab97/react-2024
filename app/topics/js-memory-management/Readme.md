@@ -34,7 +34,7 @@ But if each recursion creates a new stack frame this can lead to ```StackOverflo
 
 
 ## Working with Non Primative values ##
-This is often not stored in the stack fram because they change size and you can push and pop e.g an Array
+This is often not stored in the stack frame because they change size and you can push and pop e.g an Array
 
 Example code with an Array:
 ```
