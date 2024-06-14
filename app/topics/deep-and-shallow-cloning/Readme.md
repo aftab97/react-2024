@@ -20,6 +20,7 @@ Which is why when you make a change to one of the const holding the reference it
 const
 
 ## Shallow Clone / Copy ##
+Shallow copy references the same object.
 ```
 const a1 = [10,20,30];
 console.log(a1)
