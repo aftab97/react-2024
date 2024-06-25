@@ -101,7 +101,7 @@ Object.is(a, b); //true - because referencing the same memory
 
 const a = [10];
 const b = [10];
-Object.isEqual(a[0], b[0]); //true because they are both referencing the same value (10)
+Object.is(a[0], b[0]); //true because they are both referencing the same value (10)
 
 const a = ["c","b","a"];
 const b = a.sort();
