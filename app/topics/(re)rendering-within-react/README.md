@@ -9,7 +9,7 @@ Within the first phase the JSX code is converted into a JS representation (JS Ob
 On intial render is starts from the root component and works it way down building a react element tree of what the DOM looks like.
 
 *For re-rendering*
-Only slight difference is that at this point when a state update occurs or prop change etc. A new JS representation of the DOM identifying all the components that require an update. After that it uses a process called Diffing that to identify the changes between the old Dom and the new DOM.
+Only slight difference is that at this point when a state update occurs or prop change etc. A new JS representation of the DOM identifying all the components that require an update, called the Virtual DOM. After that it uses a process called Diffing that to identify the changes between the old Dom and the new DOM.
 
 ## Commit Phase ##
 The actual DOM manipulation of the real DOM happens during the commit phase. The appendChild() DOM API is used to put all the DOM nodes created onto the screen.
